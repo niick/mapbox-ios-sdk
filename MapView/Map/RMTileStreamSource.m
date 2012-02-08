@@ -76,7 +76,7 @@
     NSInteger x    = tile.x;
     NSInteger y    = pow(2, zoom) - tile.y - 1;
 
-    NSString *tileURLString = [self.infoDictionary objectForKey:@"tileURL"];
+    NSString *tileURLString = [[self.infoDictionary objectForKey:@"tiles"] objectAtIndex:0];
 
     tileURLString = [tileURLString stringByReplacingOccurrencesOfString:@"{z}" withString:[[NSNumber numberWithInteger:zoom] stringValue]];
     tileURLString = [tileURLString stringByReplacingOccurrencesOfString:@"{x}" withString:[[NSNumber numberWithInteger:x]    stringValue]];
@@ -97,7 +97,7 @@
 
 - (RMSphericalTrapezium)latitudeLongitudeBoundingBox
 {
-    NSArray *parts = [[self.infoDictionary objectForKey:@"bounds"] componentsSeparatedByString:@","];
+    NSArray *parts = [self.infoDictionary objectForKey:@"bounds"];
 
     if ([parts count] == 4)
     {
