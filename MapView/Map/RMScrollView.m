@@ -8,13 +8,23 @@
 
 #import "RMScrollView.h"
 
-#define RMScrollViewAnimationDuration 1.0f
-
 @implementation RMScrollView
+
+@synthesize animationDuration;
+
+- (id)initWithFrame:(CGRect)aRect
+{
+    self = [super initWithFrame:aRect];
+    
+    if (self)
+        animationDuration = 1.0;
+    
+    return self;
+}
 
 - (void)setContentOffset:(CGPoint)contentOffset animated:(BOOL)animated
 {
-    [UIView animateWithDuration:(animated ? RMScrollViewAnimationDuration : 0.0)
+    [UIView animateWithDuration:(animated ? self.animationDuration : 0.0)
                           delay:0
                         options:UIViewAnimationOptionBeginFromCurrentState & UIViewAnimationCurveEaseInOut
                      animations:^(void)
@@ -26,7 +36,7 @@
 
 - (void)zoomToRect:(CGRect)rect animated:(BOOL)animated
 {
-    [UIView animateWithDuration:(animated ? RMScrollViewAnimationDuration : 0.0)
+    [UIView animateWithDuration:(animated ? self.animationDuration : 0.0)
                           delay:0
                         options:UIViewAnimationOptionBeginFromCurrentState & UIViewAnimationCurveEaseInOut
                      animations:^(void)
