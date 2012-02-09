@@ -10,4 +10,6 @@
 
 @interface RMScrollView : UIScrollView
 
+@property (nonatomic, assign) NSTimeInterval animationDuration;
+
 @end
