@@ -17,7 +17,7 @@
     self = [super initWithFrame:aRect];
     
     if (self)
-        animationDuration = 1.0;
+        animationDuration = 0.3;
     
     return self;
 }
