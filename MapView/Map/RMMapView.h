@@ -57,7 +57,6 @@ typedef enum {
 @class RMMarker;
 @class RMAnnotation;
 @class RMQuadTree;
-@class RMScrollView;
 
 @protocol RMMercatorToTileProjection;
 @protocol RMTileSource;
@@ -74,7 +73,7 @@ typedef enum {
 
     /// subview for the background image displayed while tiles are loading. Set its contents by providing your own "loading.png".
     UIView *backgroundView;
-    RMScrollView *mapScrollView;
+    UIScrollView *mapScrollView;
     RMMapTiledLayerView *tiledLayerView;
     RMMapOverlayView *overlayView;
 
