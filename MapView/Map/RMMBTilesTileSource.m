@@ -34,6 +34,7 @@
 
 #import "RMMBTilesTileSource.h"
 #import "RMTileImage.h"
+#import "RMTileCache.h"
 #import "RMProjection.h"
 #import "RMFractalTileProjection.h"
 
@@ -96,12 +97,17 @@
     NSInteger x    = tile.x;
     NSInteger y    = pow(2, zoom) - tile.y - 1;
 
+    __block UIImage *image;
+
+    image = [tileCache cachedImage:tile withCacheKey:[self uniqueTilecacheKey]];
+
+    if (image)
+        return image;
+
     dispatch_async(dispatch_get_main_queue(), ^(void)
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:RMTileRequested object:[NSNumber numberWithUnsignedLongLong:RMTileKey(tile)]];
     });
-    
-    __block UIImage *image;
 
     [queue inDatabase:^(FMDatabase *db)
     {
@@ -350,11 +356,6 @@
 - (NSString *)longAttribution
 {
     return [NSString stringWithFormat:@"%@ - %@", [self shortName], [self shortAttribution]];
-}
-
-- (void)removeAllCachedImages
-{
-    NSLog(@"*** removeAllCachedImages in %@", [self class]);
 }
 
 @end
