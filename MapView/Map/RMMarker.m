@@ -25,6 +25,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#import <CoreGraphics/CoreGraphics.h>
 #import "RMMarker.h"
 #import "RMPixel.h"
 
@@ -150,6 +151,15 @@
     [aLabel setFont:font];
     [aLabel setTextAlignment:UITextAlignmentCenter];
     [aLabel setText:text];
+
+    aLabel.shadowOffset = CGSizeMake(1, -1);
+    aLabel.shadowColor = [UIColor blackColor];
+    aLabel.layer.cornerRadius = 5.0f;
+    [aLabel sizeToFit];
+    CGRect labelFrame = aLabel.frame;
+    labelFrame.size.width += 2; //l + r padding
+    labelFrame.size.height += 2; //l + r padding
+    aLabel.frame = labelFrame;
 
     [self setLabel:aLabel];
     [aLabel release];

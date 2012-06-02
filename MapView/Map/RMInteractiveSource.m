@@ -209,7 +209,8 @@ RMTilePoint RMInteractiveSourceNormalizedTilePointForMapView(CGPoint point, RMMa
                 case RMInteractiveSourceOutputTypeTeaser:
                 {
                     [infoObject setValue:[NSNumber numberWithBool:YES] forKey:@"__teaser__"];
-                    
+                    NSLog(@"infoObject = %@", infoObject);
+
                     formattedOutput = [GRMustacheTemplate renderObject:infoObject fromString:formatterTemplate error:NULL];
 
                     break;
